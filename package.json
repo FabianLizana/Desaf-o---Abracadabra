@@ -1,0 +1,13 @@
+{
+  "name": "abracadabra-challenge",
+  "version": "1.0.0",
+  "description": "Servidor web para el desafío Abracadabra",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
