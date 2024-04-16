@@ -36,15 +36,15 @@ app.use('/abracadabra/juego/:usuario', (req, res, next) => {
         // Si el usuario existe en el arreglo.
         next();
     } else {
-    //Si el usuario no existe, saldra imagen.
+    //Si el usuario no existe, saldra imagen who.
         res.sendFile(__dirname + '/assets/who.jpeg');
     }
 });
 
-// Ruta GET correspondiente
+// Ruta GET 
 app.get('/abracadabra/juego/:usuario', (req, res) => {
     const { usuario } = req.params;
-    // Mensaje de bienvenida de usuario encontrado
+    // Usuario encontrado
     res.send(`El usuario "${usuario}" existe`); 
 });
 
