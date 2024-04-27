@@ -31,24 +31,23 @@ devolver la imagen “who.jpeg”.*/
 
 
 
-// se modifica el middleware para redirigir explícitamente a la ruta del juego (/juego) usando la función res.redirect() si se encuentra que el usuario existe.
+// Middleware para validar si el usuario existe
 app.use('/abracadabra/juego/:usuario', (req, res, next) => {
   const { usuario } = req.params;
-
+  
+  // Verificar si el usuario existe en el arreglo
   if (usuarios.map(u => u.trim().toLowerCase()).includes(usuario.trim().toLowerCase())) {
-    // Si el usuario existe, permitir el paso a la ruta GET
-    next(); 
+    next(); // Permitir que la solicitud continúe a la ruta GET
   } else {
-    // Si el usuario no existe, devolver la imagen "who.jpeg"
-    res.sendFile(__dirname + '/assets/who.jpeg');
+    res.sendFile(__dirname + '/assets/who.jpeg'); // Devolver la imagen "who.jpeg" si el usuario no existe
   }
 });
 
-// Ruta GET que se ejecuta si el middleware da permiso
+// Ruta GET para mostrar el juego
 app.get('/abracadabra/juego/:usuario', (req, res) => {
-  const { usuario } = req.params;
-  res.send(`El usuario "${usuario}" existe`); 
+  res.sendFile(__dirname + '/index.html'); // Devuelve la página del juego
 });
+
 
 
 /*forma 2 respuesta 4:
