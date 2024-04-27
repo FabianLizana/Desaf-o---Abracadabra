@@ -49,7 +49,6 @@ app.get('/abracadabra/juego/:usuario', (req, res) => {
 });
 
 
-
 /*forma 2 respuesta 4:
 // Middleware para validar si un usuario existe o no  y mostrar la imagen "who" sino existe
 app.use('/abracadabra/usuarios/:users', (req, res, next) => {
