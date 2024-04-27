@@ -36,22 +36,20 @@ app.use('/abracadabra/juego/:usuario', (req, res, next) => {
   const { usuario } = req.params;
 
   if (usuarios.map(u => u.trim().toLowerCase()).includes(usuario.trim().toLowerCase())) {
-    // Si el usuario existe en el arreglo.
-    res.redirect('/'); // Redirigir a la ruta principal del juego
+    // Si el usuario existe, permitir el paso a la ruta GET
+    next(); 
   } else {
-    //Si el usuario no existe, saldra imagen who.
+    // Si el usuario no existe, devolver la imagen "who.jpeg"
     res.sendFile(__dirname + '/assets/who.jpeg');
   }
 });
 
-
-
-// Ruta GET 
+// Ruta GET que se ejecuta si el middleware da permiso
 app.get('/abracadabra/juego/:usuario', (req, res) => {
-    const { usuario } = req.params;
-    // Usuario encontrado
-    res.send(`El usuario "${usuario}" existe`); 
+  const { usuario } = req.params;
+  res.send(`El usuario "${usuario}" existe`); 
 });
+
 
 /*forma 2 respuesta 4:
 // Middleware para validar si un usuario existe o no  y mostrar la imagen "who" sino existe
