@@ -37,12 +37,13 @@ app.use('/abracadabra/juego/:usuario', (req, res, next) => {
 
   if (usuarios.map(u => u.trim().toLowerCase()).includes(usuario.trim().toLowerCase())) {
     // Si el usuario existe en el arreglo.
-    res.redirect('/game'); // Redirigir a la ruta del juego
+    res.redirect('/'); // Redirigir a la ruta principal del juego
   } else {
     //Si el usuario no existe, saldra imagen who.
     res.sendFile(__dirname + '/assets/who.jpeg');
   }
 });
+
 
 
 // Ruta GET 
