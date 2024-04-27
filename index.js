@@ -29,17 +29,21 @@ usuario recibido como parámetro “usuario” existe en el arreglo de nombres c
 el servidor. En caso de ser exitoso, permitir el paso a la ruta GET correspondiente, de lo contrario
 devolver la imagen “who.jpeg”.*/
 
+
+
+// se modifica el middleware para redirigir explícitamente a la ruta del juego (/juego) usando la función res.redirect() si se encuentra que el usuario existe.
 app.use('/abracadabra/juego/:usuario', (req, res, next) => {
-    const { usuario } = req.params;
-    
-    if (usuarios.map(u => u.trim().toLowerCase()).includes(usuario.trim().toLowerCase())) {
-        // Si el usuario existe en el arreglo.
-        next();
-    } else {
+  const { usuario } = req.params;
+
+  if (usuarios.map(u => u.trim().toLowerCase()).includes(usuario.trim().toLowerCase())) {
+    // Si el usuario existe en el arreglo.
+    res.redirect('/game'); // Redirigir a la ruta del juego
+  } else {
     //Si el usuario no existe, saldra imagen who.
-        res.sendFile(__dirname + '/assets/who.jpeg');
-    }
+    res.sendFile(__dirname + '/assets/who.jpeg');
+  }
 });
+
 
 // Ruta GET 
 app.get('/abracadabra/juego/:usuario', (req, res) => {
